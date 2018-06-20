@@ -1,0 +1,7 @@
+{
+  "extends": "ebay/legacy",
+  "env": {
+      "browser": true,
+      "jasmine": true
+  }
+}

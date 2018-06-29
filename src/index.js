@@ -38,4 +38,12 @@ module.exports = class {
             this.labelEl.classList.add(this.options.labelElementInlineModifier);
         }
     }
+
+    refresh() {
+        if (hasValue(this.textboxEl)) {
+            this.labelEl.classList.remove(this.options.labelElementInlineModifier);
+        } else {
+            this.labelEl.classList.add(this.options.labelElementInlineModifier);
+        }
+    }
 };

@@ -595,6 +595,8 @@ $_mod.def("/makeup-floating-label$0.0.1/index", function(require, exports, modul
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var defaultOptions = {
@@ -638,24 +640,52 @@ module.exports = function () {
         }
     }
 
+    _createClass(_class, [{
+        key: 'refresh',
+        value: function refresh() {
+            if (hasValue(this.textboxEl)) {
+                this.labelEl.classList.remove(this.options.labelElementInlineModifier);
+            } else {
+                this.labelEl.classList.add(this.options.labelElementInlineModifier);
+            }
+        }
+    }]);
+
     return _class;
 }();
 
 });
-$_mod.def("/makeup-floating-label$0.0.1/docs/index", function(require, exports, module, __filename, __dirname) { var FloatingLabel = require('/makeup-floating-label$0.0.1/index'/*'../index.js'*/);
+$_mod.def("/makeup-floating-label$0.0.1/docs/index", function(require, exports, module, __filename, __dirname) { document.addEventListener('DOMContentLoaded', function() {
+    var FloatingLabel = require('/makeup-floating-label$0.0.1/index'/*'../index.js'*/);
 
-function nodeListToArray(nodeList) {
-    return Array.prototype.slice.call(nodeList);
-}
+    function nodeListToArray(nodeList) {
+        return Array.prototype.slice.call(nodeList);
+    }
 
-function querySelectorAllToArray(selector) {
-    return nodeListToArray(document.querySelectorAll(selector));
-}
+    function querySelectorAllToArray(selector) {
+        return nodeListToArray(document.querySelectorAll(selector));
+    }
 
-var widgetEls = querySelectorAllToArray('.floating-label');
+    var widgetEls = querySelectorAllToArray('.floating-label');
+    var autofillBtn = document.getElementById('autofill');
+    var refreshBtn = document.getElementById('refresh');
+    var widgets = [];
 
-widgetEls.forEach(function(el) {
-    console.log(new FloatingLabel(el));
+    widgetEls.forEach(function(el) {
+        widgets.push(new FloatingLabel(el));
+    });
+
+    autofillBtn.addEventListener('click', function() {
+        widgetEls.forEach(function(el) {
+            el.querySelector('input').value = 'Autofill Text';
+        });
+    });
+
+    refreshBtn.addEventListener('click', function() {
+        widgets.forEach(function(el, index) {
+            widgets[index].refresh();
+        });
+    });
 });
 
 });

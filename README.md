@@ -47,6 +47,10 @@ Markup:
 </div>
 ```
 
+## Methods
+
+* `refresh()`: call this after form autofill or reset to refresh the label state
+
 ## Custom Events        
 
 * None

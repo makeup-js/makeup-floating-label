@@ -14,9 +14,9 @@
         .floating-label__label {
             color: #444;
             display: block;
-            font-size: 0.75em;
             position: absolute;
-            transform: translate(0, -1.25em);
+            transform: scale(0.75, 0.75) translate(0, -1.25em);
+            transform-origin: left;
             z-index: 1;
         }
         .floating-label__label--inline {
@@ -25,7 +25,7 @@
             top: 10%;
         }
         .floating-label__label--animate {
-            transition: all 0.3s;
+            transition: transform 0.3s;
         }
         .floating-label input {
             border: none;
@@ -45,15 +45,22 @@
     <main role="main">
         <h1>makeup-floating-label</h1>
 
-        <span class="floating-label">
-            <label class="floating-label__label" for="input-1">First name</label>
-            <input id="input-1" name="input-1" placeholder="placeholder text" />
-        </span>
+        <form action="#" method="get">
 
-        <span class="floating-label">
-            <label class="floating-label__label" for="input-2">Last name</label>
-            <input id="input-2" name="input-2" placeholder="placeholder text" />
-        </span>
+            <span class="floating-label">
+                <label class="floating-label__label" for="firstname">First name</label>
+                <input id="firstname" name="firstname" placeholder="placeholder text" />
+            </span>
+
+            <span class="floating-label">
+                <label class="floating-label__label" for="lastname">Last name</label>
+                <input id="lastname" name="lastname" placeholder="placeholder text" />
+            </span>
+
+            <div>
+                <p><input type="submit" /><input type="reset" /><button id="autofill" type="button">Autofill</button><button id="refresh" type="button">Refresh</button></p>
+            </div>
+        </form>
 
     </main>
 

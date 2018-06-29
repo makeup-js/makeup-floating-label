@@ -591,7 +591,7 @@ https://github.com/joyent/node/blob/master/lib/module.js
     }
 })();
 
-$_mod.def("/makeup-floating-label$0.0.1/index", function(require, exports, module, __filename, __dirname) { 'use strict';
+$_mod.def("/makeup-floating-label$0.0.2/index", function(require, exports, module, __filename, __dirname) { 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -655,8 +655,8 @@ module.exports = function () {
 }();
 
 });
-$_mod.def("/makeup-floating-label$0.0.1/docs/index", function(require, exports, module, __filename, __dirname) { document.addEventListener('DOMContentLoaded', function() {
-    var FloatingLabel = require('/makeup-floating-label$0.0.1/index'/*'../index.js'*/);
+$_mod.def("/makeup-floating-label$0.0.2/docs/index", function(require, exports, module, __filename, __dirname) { document.addEventListener('DOMContentLoaded', function() {
+    var FloatingLabel = require('/makeup-floating-label$0.0.2/index'/*'../index.js'*/);
 
     function nodeListToArray(nodeList) {
         return Array.prototype.slice.call(nodeList);
@@ -689,4 +689,4 @@ $_mod.def("/makeup-floating-label$0.0.1/docs/index", function(require, exports, 
 });
 
 });
-$_mod.run("/makeup-floating-label$0.0.1/docs/index");
+$_mod.run("/makeup-floating-label$0.0.2/docs/index");

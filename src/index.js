@@ -35,9 +35,12 @@ module.exports = class {
         this.textboxEl.addEventListener('focus', this._onFocusListener);
 
         // check for computed background color because of Chrome autofill bug
-        if (!hasValue(this.textboxEl) && getComputedStyle(this.textboxEl).backgroundColor !== `rgb(250, 255, 189)`) {
-            this.labelEl.classList.add(this.options.labelElementInlineModifier);
-        }
+        window.addEventListener('load', function() {
+            const isAutofilled = getComputedStyle(this.textboxEl).backgroundColor === `rgb(250, 255, 189)`;
+            if (!hasValue(this.textboxEl) && !isAutofilled) {
+                this.labelEl.classList.add(this.options.labelElementInlineModifier);
+            }
+        });
     }
 
     refresh() {

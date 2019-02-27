@@ -16,6 +16,8 @@ function hasValue(input) {
 }
 
 function isAutofilled(input) {
+    // check for computed background color because of Chrome autofill bug
+    // https://stackoverflow.com/questions/35049555/chrome-autofill-autocomplete-no-value-for-password/35783761#35783761
     return getComputedStyle(input).backgroundColor === 'rgb(250, 255, 189)';
 }
 

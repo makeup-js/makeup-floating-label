@@ -34,7 +34,8 @@ module.exports = class {
         this.textboxEl.addEventListener('blur', this._onBlurListener);
         this.textboxEl.addEventListener('focus', this._onFocusListener);
 
-        if (!hasValue(this.textboxEl)) {
+        // check for computed background color because of Chrome autofill bug
+        if (!hasValue(this.textboxEl) && getComputedStyle(this.textboxEl).backgroundColor !== `rgb(250, 255, 189)`) {
             this.labelEl.classList.add(this.options.labelElementInlineModifier);
         }
     }

@@ -40,7 +40,7 @@ module.exports = class {
             if (!hasValue(this.textboxEl) && !isAutofilled) {
                 this.labelEl.classList.add(this.options.labelElementInlineModifier);
             }
-        });
+        }.bind(this));
     }
 
     refresh() {

@@ -48,7 +48,7 @@ module.exports = function () {
             if (!hasValue(this.textboxEl) && !isAutofilled) {
                 this.labelEl.classList.add(this.options.labelElementInlineModifier);
             }
-        });
+        }.bind(this));
     }
 
     _createClass(_class, [{

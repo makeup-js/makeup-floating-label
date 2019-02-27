@@ -15,6 +15,10 @@ function hasValue(input) {
     return input.value.length > 0;
 }
 
+function isAutofilled(input) {
+    return getComputedStyle(input).backgroundColor === 'rgb(250, 255, 189)';
+}
+
 function _onBlur() {
     if (!hasValue(this.textboxEl)) {
         this.labelEl.classList.add(this.options.labelElementInlineModifier);
@@ -42,9 +46,7 @@ module.exports = function () {
         this.textboxEl.addEventListener('blur', this._onBlurListener);
         this.textboxEl.addEventListener('focus', this._onFocusListener);
 
-        // check for computed background color because of Chrome autofill bug
-        var isAutofilled = getComputedStyle(this.textboxEl).backgroundColor === 'rgb(250, 255, 189)';
-        if (!hasValue(this.textboxEl) && !isAutofilled) {
+        if (!hasValue(this.textboxEl) && !isAutofilled(this.textboxEl)) {
             this.labelEl.classList.add(this.options.labelElementInlineModifier);
         }
     }
@@ -52,7 +54,7 @@ module.exports = function () {
     _createClass(_class, [{
         key: 'refresh',
         value: function refresh() {
-            if (hasValue(this.textboxEl)) {
+            if (hasValue(this.textboxEl) || isAutofilled(this.textboxEl)) {
                 this.labelEl.classList.remove(this.options.labelElementInlineModifier);
             } else {
                 this.labelEl.classList.add(this.options.labelElementInlineModifier);

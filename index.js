@@ -8,17 +8,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var defaultOptions = {
     labelElementAnimateModifier: 'floating-label__label--animate',
-    labelElementInlineModifier: 'floating-label__label--inline'
+    labelElementInlineModifier: 'floating-label__label--inline',
+    textboxElementBackgroundRGB: 'rgb(255, 255, 255)'
 };
 
 function hasValue(input) {
     return input.value.length > 0;
 }
 
-function isAutofilled(input) {
+function isAutofilled(input, color) {
     // check for computed background color because of Chrome autofill bug
     // https://stackoverflow.com/questions/35049555/chrome-autofill-autocomplete-no-value-for-password/35783761#35783761
-    return getComputedStyle(input).backgroundColor === 'rgb(250, 255, 189)';
+    return getComputedStyle(input).backgroundColor !== color;
 }
 
 function _onBlur() {
@@ -48,7 +49,7 @@ module.exports = function () {
         this.textboxEl.addEventListener('blur', this._onBlurListener);
         this.textboxEl.addEventListener('focus', this._onFocusListener);
 
-        if (!hasValue(this.textboxEl) && !isAutofilled(this.textboxEl)) {
+        if (!hasValue(this.textboxEl) && !isAutofilled(this.textboxEl, this.options.textboxElementBackgroundRGB)) {
             this.labelEl.classList.add(this.options.labelElementInlineModifier);
         }
     }
@@ -56,7 +57,7 @@ module.exports = function () {
     _createClass(_class, [{
         key: 'refresh',
         value: function refresh() {
-            if (hasValue(this.textboxEl) || isAutofilled(this.textboxEl)) {
+            if (hasValue(this.textboxEl) || isAutofilled(this.textboxEl, this.options.textboxElementBackgroundRGB)) {
                 this.labelEl.classList.remove(this.options.labelElementInlineModifier);
             } else {
                 this.labelEl.classList.add(this.options.labelElementInlineModifier);

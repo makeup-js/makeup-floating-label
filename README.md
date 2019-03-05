@@ -47,6 +47,13 @@ Markup:
 </div>
 ```
 
+## Params
+
+* `el`: the root widget el
+* `options.labelElementAnimateModifier`: the classname to add when the label begins its CSS animation (default: 'floating-label__label--animate')
+* `options.labelElementInlineModifier`: the classname to add when the label is in its non-floating state (default: 'floating-label__label--inline')
+* `options.textboxElementBackgroundRGB`: for the purposes of a Chrome autofill bug, if your textbox background colour is not white, specify its RGB value (default: 'rgb(255, 255, 255)')
+
 ## Methods
 
 * `refresh()`: call this after form autofill or reset to refresh the label state

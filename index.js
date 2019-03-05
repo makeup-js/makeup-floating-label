@@ -16,10 +16,10 @@ function hasValue(input) {
     return input.value.length > 0;
 }
 
-function isAutofilled(input, options) {
+function isAutofilled(input, color) {
     // check for computed background color because of Chrome autofill bug
     // https://stackoverflow.com/questions/35049555/chrome-autofill-autocomplete-no-value-for-password/35783761#35783761
-    return getComputedStyle(input).backgroundColor !== options.textboxElementBackgroundRGB;
+    return getComputedStyle(input).backgroundColor !== color;
 }
 
 function _onBlur() {
@@ -49,7 +49,7 @@ module.exports = function () {
         this.textboxEl.addEventListener('blur', this._onBlurListener);
         this.textboxEl.addEventListener('focus', this._onFocusListener);
 
-        if (!hasValue(this.textboxEl) && !isAutofilled(this.textboxEl, this.options)) {
+        if (!hasValue(this.textboxEl) && !isAutofilled(this.textboxEl, this.options.textboxElementBackgroundRGB)) {
             this.labelEl.classList.add(this.options.labelElementInlineModifier);
         }
     }
@@ -57,7 +57,7 @@ module.exports = function () {
     _createClass(_class, [{
         key: 'refresh',
         value: function refresh() {
-            if (hasValue(this.textboxEl) || isAutofilled(this.textboxEl, this.options)) {
+            if (hasValue(this.textboxEl) || isAutofilled(this.textboxEl, this.options.textboxElementBackgroundRGB)) {
                 this.labelEl.classList.remove(this.options.labelElementInlineModifier);
             } else {
                 this.labelEl.classList.add(this.options.labelElementInlineModifier);

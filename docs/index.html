@@ -35,7 +35,28 @@
         .floating-label input::placeholder {
             color: transparent;
         }
+
         .floating-label input:focus::placeholder {
+            color: #767676;
+            font-weight: 200;
+        }
+
+        /* IE11 */
+        .floating-label input:-ms-input-placeholder {
+            color: transparent;
+        }
+
+        .floating-label input:focus:-ms-input-placeholder{
+            color: #767676;
+            font-weight: 200;
+        }
+
+        /* EDGE */
+        .floating-label input::-ms-input-placeholder {
+            color: transparent;
+        }
+
+        .floating-label input:focus::-ms-input-placeholder{
             color: #767676;
             font-weight: 200;
         }

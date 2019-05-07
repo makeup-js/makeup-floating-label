@@ -591,7 +591,7 @@ https://github.com/joyent/node/blob/master/lib/module.js
     }
 })();
 
-$_mod.installed("makeup-floating-label$0.0.4", "nodelist-foreach-polyfill", "1.2.0");
+$_mod.installed("makeup-floating-label$0.0.5", "nodelist-foreach-polyfill", "1.2.0");
 $_mod.main("/nodelist-foreach-polyfill$1.2.0", "");
 $_mod.def("/nodelist-foreach-polyfill$1.2.0/index", function(require, exports, module, __filename, __dirname) { if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = function (callback, thisArg) {
@@ -604,7 +604,7 @@ $_mod.def("/nodelist-foreach-polyfill$1.2.0/index", function(require, exports, m
 
 });
 $_mod.run("/nodelist-foreach-polyfill$1.2.0/index");
-$_mod.def("/makeup-floating-label$0.0.4/index", function(require, exports, module, __filename, __dirname) { 'use strict';
+$_mod.def("/makeup-floating-label$0.0.5/index", function(require, exports, module, __filename, __dirname) { 'use strict';
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -676,11 +676,11 @@ function () {
 }();
 
 });
-$_mod.def("/makeup-floating-label$0.0.4/docs/index", function(require, exports, module, __filename, __dirname) { "use strict";
+$_mod.def("/makeup-floating-label$0.0.5/docs/index", function(require, exports, module, __filename, __dirname) { "use strict";
 
 /* eslint-disable no-console */
 document.addEventListener('DOMContentLoaded', function () {
-  var FloatingLabel = require('/makeup-floating-label$0.0.4/index'/*'../index.js'*/);
+  var FloatingLabel = require('/makeup-floating-label$0.0.5/index'/*'../index.js'*/);
 
   var widgetEls = document.querySelectorAll('.floating-label');
   var autofillBtn = document.getElementById('autofill');
@@ -702,4 +702,4 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 });
-$_mod.run("/makeup-floating-label$0.0.4/docs/index");
+$_mod.run("/makeup-floating-label$0.0.5/docs/index");

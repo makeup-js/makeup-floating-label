@@ -591,108 +591,114 @@ https://github.com/joyent/node/blob/master/lib/module.js
     }
 })();
 
+$_mod.installed("makeup-floating-label$0.0.4", "nodelist-foreach-polyfill", "1.2.0");
+$_mod.main("/nodelist-foreach-polyfill$1.2.0", "");
+$_mod.def("/nodelist-foreach-polyfill$1.2.0/index", function(require, exports, module, __filename, __dirname) { if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = function (callback, thisArg) {
+        thisArg = thisArg || window;
+        for (var i = 0; i < this.length; i++) {
+            callback.call(thisArg, this[i], i, this);
+        }
+    };
+}
+
+});
+$_mod.run("/nodelist-foreach-polyfill$1.2.0/index");
 $_mod.def("/makeup-floating-label$0.0.4/index", function(require, exports, module, __filename, __dirname) { 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 var defaultOptions = {
-    labelElementAnimateModifier: 'floating-label__label--animate',
-    labelElementInlineModifier: 'floating-label__label--inline',
-    textboxElementBackgroundRGB: 'rgb(255, 255, 255)'
+  labelElementAnimateModifier: 'floating-label__label--animate',
+  labelElementInlineModifier: 'floating-label__label--inline',
+  textboxElementBackgroundRGB: 'rgb(255, 255, 255)'
 };
 
 function hasValue(input) {
-    return input.value.length > 0;
+  return input.value.length > 0;
 }
 
 function isAutofilled(input, color) {
-    // check for computed background color because of Chrome autofill bug
-    // https://stackoverflow.com/questions/35049555/chrome-autofill-autocomplete-no-value-for-password/35783761#35783761
-    return getComputedStyle(input).backgroundColor !== color;
+  // check for computed background color because of Chrome autofill bug
+  // https://stackoverflow.com/questions/35049555/chrome-autofill-autocomplete-no-value-for-password/35783761#35783761
+  return getComputedStyle(input).backgroundColor !== color;
 }
 
 function _onBlur() {
-    if (!hasValue(this.textboxEl)) {
-        this.labelEl.classList.add(this.options.labelElementInlineModifier);
-    }
+  if (!hasValue(this.textboxEl)) {
+    this.labelEl.classList.add(this.options.labelElementInlineModifier);
+  }
 }
 
 function _onFocus() {
-    this.labelEl.classList.add(this.options.labelElementAnimateModifier);
-    this.labelEl.classList.remove(this.options.labelElementInlineModifier);
+  this.labelEl.classList.add(this.options.labelElementAnimateModifier);
+  this.labelEl.classList.remove(this.options.labelElementInlineModifier);
 }
 
-module.exports = function () {
-    function _class(el, userOptions) {
-        _classCallCheck(this, _class);
+module.exports =
+/*#__PURE__*/
+function () {
+  function _class(el, userOptions) {
+    _classCallCheck(this, _class);
 
-        this.options = _extends({}, defaultOptions, userOptions);
+    this.options = _extends({}, defaultOptions, userOptions);
+    this.rootEl = el;
+    this.labelEl = this.rootEl.querySelector('label');
+    this.textboxEl = this.rootEl.querySelector('input');
+    this._onBlurListener = _onBlur.bind(this);
+    this._onFocusListener = _onFocus.bind(this);
+    this.textboxEl.addEventListener('blur', this._onBlurListener);
+    this.textboxEl.addEventListener('focus', this._onFocusListener);
 
-        this.rootEl = el;
-        this.labelEl = this.rootEl.querySelector('label');
-        this.textboxEl = this.rootEl.querySelector('input');
-
-        this._onBlurListener = _onBlur.bind(this);
-        this._onFocusListener = _onFocus.bind(this);
-
-        this.textboxEl.addEventListener('blur', this._onBlurListener);
-        this.textboxEl.addEventListener('focus', this._onFocusListener);
-
-        if (!hasValue(this.textboxEl) && !isAutofilled(this.textboxEl, this.options.textboxElementBackgroundRGB)) {
-            this.labelEl.classList.add(this.options.labelElementInlineModifier);
-        }
+    if (!hasValue(this.textboxEl) && !isAutofilled(this.textboxEl, this.options.textboxElementBackgroundRGB)) {
+      this.labelEl.classList.add(this.options.labelElementInlineModifier);
     }
+  }
 
-    _createClass(_class, [{
-        key: 'refresh',
-        value: function refresh() {
-            if (hasValue(this.textboxEl) || isAutofilled(this.textboxEl, this.options.textboxElementBackgroundRGB)) {
-                this.labelEl.classList.remove(this.options.labelElementInlineModifier);
-            } else {
-                this.labelEl.classList.add(this.options.labelElementInlineModifier);
-            }
-        }
-    }]);
+  _createClass(_class, [{
+    key: "refresh",
+    value: function refresh() {
+      if (hasValue(this.textboxEl) || isAutofilled(this.textboxEl, this.options.textboxElementBackgroundRGB)) {
+        this.labelEl.classList.remove(this.options.labelElementInlineModifier);
+      } else {
+        this.labelEl.classList.add(this.options.labelElementInlineModifier);
+      }
+    }
+  }]);
 
-    return _class;
+  return _class;
 }();
 
 });
-$_mod.def("/makeup-floating-label$0.0.4/docs/index", function(require, exports, module, __filename, __dirname) { document.addEventListener('DOMContentLoaded', function() {
-    var FloatingLabel = require('/makeup-floating-label$0.0.4/index'/*'../index.js'*/);
+$_mod.def("/makeup-floating-label$0.0.4/docs/index", function(require, exports, module, __filename, __dirname) { "use strict";
 
-    function nodeListToArray(nodeList) {
-        return Array.prototype.slice.call(nodeList);
-    }
+/* eslint-disable no-console */
+document.addEventListener('DOMContentLoaded', function () {
+  var FloatingLabel = require('/makeup-floating-label$0.0.4/index'/*'../index.js'*/);
 
-    function querySelectorAllToArray(selector) {
-        return nodeListToArray(document.querySelectorAll(selector));
-    }
-
-    var widgetEls = querySelectorAllToArray('.floating-label');
-    var autofillBtn = document.getElementById('autofill');
-    var refreshBtn = document.getElementById('refresh');
-    var widgets = [];
-
-    widgetEls.forEach(function(el) {
-        widgets.push(new FloatingLabel(el));
+  var widgetEls = document.querySelectorAll('.floating-label');
+  var autofillBtn = document.getElementById('autofill');
+  var refreshBtn = document.getElementById('refresh');
+  var widgets = [];
+  widgetEls.forEach(function (el) {
+    widgets.push(new FloatingLabel(el));
+  });
+  autofillBtn.addEventListener('click', function () {
+    widgetEls.forEach(function (el) {
+      el.querySelector('input').value = 'Autofill Text';
     });
-
-    autofillBtn.addEventListener('click', function() {
-        widgetEls.forEach(function(el) {
-            el.querySelector('input').value = 'Autofill Text';
-        });
+  });
+  refreshBtn.addEventListener('click', function () {
+    widgets.forEach(function (el, index) {
+      widgets[index].refresh();
     });
-
-    refreshBtn.addEventListener('click', function() {
-        widgets.forEach(function(el, index) {
-            widgets[index].refresh();
-        });
-    });
+  });
 });
 
 });

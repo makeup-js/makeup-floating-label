@@ -1,7 +1,5 @@
-/* eslint-disable no-console */
-
 document.addEventListener('DOMContentLoaded', function() {
-    const FloatingLabel = require('../index.js');
+    const FloatingLabel = require('../../src/index.js');
 
     const widgetEls = document.querySelectorAll('.floating-label');
     const autofillBtn = document.getElementById('autofill');

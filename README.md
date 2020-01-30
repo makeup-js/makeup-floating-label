@@ -60,15 +60,15 @@ Markup:
 
 ## Custom Events        
 
-* None
+None
 
 ## Dependencies
 
-* [custom-event](https://github.com/webmodules/custom-event) (for IE)
+None
 
 ## Polyfills
 
-* None
+None
 
 ## CI Build
 

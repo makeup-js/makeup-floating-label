@@ -1,5 +1,7 @@
+require('nodelist-foreach-polyfill');
+
 document.addEventListener('DOMContentLoaded', function() {
-    const FloatingLabel = require('../../src/index.js');
+    const FloatingLabel = require('../../index.js');
 
     const widgetEls = document.querySelectorAll('.floating-label');
     const autofillBtn = document.getElementById('autofill');
